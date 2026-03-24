@@ -15,7 +15,7 @@ padded = padder.update(b"a secret message") + padder.finalize()
 ct = cipher_enc.encryptor().update(padded) + cipher_enc.encryptor().finalize()
 
 # Decrypt with ChaCha20
-cipher_dec = Cipher(algorithms.ChaCha20(key_chacha, nonce_chacha), mode=None)
+cipher_dec = Cipher(algorithms.ChaCha20(key_chacha, nonce_chacha), modes.CBC(iv))
 res = cipher_dec.decryptor().update(ct) + cipher_dec.decryptor().finalize()
 
 print(res)
